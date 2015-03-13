@@ -22,23 +22,31 @@ if (!$result = $dbh->query("SELECT ID, Name, Countrycode,
     die("{$dbh->errno} : {$dbh->error}");
         
 }
+?>
 
-while($row = $result->fetch_assoc())
-    
+
+<table border=3d>
+<?php
+    while($row = $result->fetch_assoc())
+
     {
-  echo $row['ID'] . ' ';
-  echo $row['Name'] . ' ';
-  echo $row['Countrycode'] . ' ';
-  echo $row['District'] . ' ';
-   echo "<a href=\"edit.php\">LIen vers la prochaine page</a>" . '</br>';
+?><tr>
+    <td> <?php echo $row['ID'] . ' ';?> </td>
+    <td> <?php echo $row['Name'] . ' ';?> </td>
+    <td> <?php echo $row['Countrycode'] . ' ';?> </td>
+    <td> <?php echo $row['District'] . ' ';?> </td>
+    <td> <?php echo "<a href=\"edit.php?ID=" . $row['ID'] . ">Modifier</a>" . '</br>';?> </td>
+    </tr>
+    <?php
     }
+
     
     {
     $nbr = $result->num_rows;
     echo "Il y a $nbr ligne(s)";
 }
 ?>
-
+</table>
 
 </body>
 </html>
